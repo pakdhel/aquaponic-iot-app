@@ -1,4 +1,6 @@
   import { Geist, Geist_Mono } from "next/font/google";
+  // import 'react-toastify/dist/ReactToastify.css';
+  import { ToastContainer } from 'react-toastify';
   import "./globals.css";
 
   const geistSans = Geist({
@@ -23,6 +25,17 @@
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           {children}
+          <ToastContainer
+          position="top-right"
+          autoClose={2000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
         </body>
       </html>
     );

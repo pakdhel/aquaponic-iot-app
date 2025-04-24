@@ -4,6 +4,7 @@ import { Icon } from "@iconify/react";
 import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function Navbar() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -14,7 +15,7 @@ export default function Navbar() {
 
   const handleLogout = async() => {
     await signOut(auth);
-    console.log('berhasil logout');
+    toast.success('Logout berhasil')
     router.push('/')
   }
 

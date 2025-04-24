@@ -3,6 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --toastify-color-success: #01E862;
+  --toastify-color-error: #ff033e;
 }
 
 @theme inline {

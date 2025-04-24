@@ -4,22 +4,33 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../lib/firebase";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import { getFirebaseAuthErrorMessage } from "@/lib/firebaseErrors";
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState('');
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setSuccess('');
     
     try {
-      await signInWithEmailAndPassword(auth, email, password)
+      await signInWithEmailAndPassword(auth, email, password);
+      toast.success("Login berhasil");
       router.push('/dashboard');
-      alert('Login berhasil')
+      // alert('Login berhasil');
     } catch (err) {
-      setError(err.message)
+      // setError("Gagal login" + err.message)
+      const message = getFirebaseAuthErrorMessage(err.code);
+      toast.error(message);
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -56,8 +67,6 @@ export default function Login() {
               <a href="#" className="hover:underline hover:text-purple-300">Forgot Password ?</a>
             </div>
           </div>
-
-          {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
 
           <button type="submit" className="w-full bg-black text-white py-3 rounded-md font-semibold">
             Sign in
