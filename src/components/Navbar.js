@@ -1,11 +1,22 @@
 "use client"
 import { useState } from "react";
 import { Icon } from "@iconify/react";
+import { signOut } from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
+
+  const router = useRouter();
+
+  const handleLogout = async() => {
+    await signOut(auth);
+    console.log('berhasil logout');
+    router.push('/')
+  }
 
   return (
     <>
@@ -49,8 +60,7 @@ export default function Navbar() {
         <ul className="space-y-4">
           <li><a href="#" className="hover:underline">Profil</a></li>
           <li><a href="#" className="hover:underline">Pengaturan</a></li>
-          {/* <button onClick={handleLogout} className="hover:underline text-left w-full">Logout</button> */}
-          <button className="hover:underline text-left w-full">Logout</button>
+          <button onClick={handleLogout} className="hover:underline text-left w-full">Logout</button>
         </ul>
       </div>
     </>

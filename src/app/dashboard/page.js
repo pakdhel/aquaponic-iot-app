@@ -1,8 +1,29 @@
+'use client'
+
 import Navbar from "@/components/Navbar";
 import Card from "@/components/Card";
 import PumpCard from "@/components/PumpsCard";
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import { useRouter } from "next/navigation";
 
 export default function Dashboard() {
+    const [user, setUser] = useState(null);
+    const router = useRouter();
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) setUser(user);
+            else router.push('/');
+        });
+
+        return () => unsubscribe();
+    }, []);
+
+    if (!user) return <p>loading ...</p>
+
+
     return (
         <>
             
