@@ -47,9 +47,9 @@ export default function Dashboard() {
             
             <Navbar />
 
-            <div className="px-[84px] py-[42px]">
+            <div className="px-[16px] py-[28px] sm:px-[84px] sm:py-[42px]">
 
-                <div className="flex gap-12 justify-between mb-8">
+                <div className="grid grid-cols-2 gap-4 xl:flex xl:flex-row xl:gap-12 justify-between items-center mb-8">
 
                     <Card loading={loading} things="Temperature" value={`${sensors.temperature}°C`} desc="Normal Range: 20-30°C" icon="fluent:temperature-16-filled" />
                     <Card loading={loading} things="PPM Level" value={sensors.tds} desc="Optimal Range: 1000-1200" icon="ion:water" />

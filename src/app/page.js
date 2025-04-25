@@ -17,7 +17,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="w-[500px] rounded-xl bg-white p-8 text-black">
+      <div className="w-[320px] sm:w-[500px] rounded-xl bg-white p-6 sm:p-8 text-black">
       
         <p className="text-center text-2xl font-bold">Aquaponic Monitor</p>
         <form className="mt-6" onSubmit={handleLogin}>

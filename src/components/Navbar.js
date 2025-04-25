@@ -1,10 +1,7 @@
 "use client"
 import { useState } from "react";
 import { Icon } from "@iconify/react";
-import { signOut } from "firebase/auth";
-import { auth } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
 import { useAuth } from "@/context/AuthContext";
 
 export default function Navbar() {
@@ -24,16 +21,16 @@ export default function Navbar() {
       {/* Navbar */}
       <nav className="flex items-center justify-between px-4 py-3 bg-white shadow-md">
         <div className="flex items-center gap-[18px]">
-          <span className="text-[20px] font-normal">Aquaponic Monitor</span>
+          <span className="text-[18px] sm:text-[20px] font-normal">Aquaponic Monitor</span>
         </div>
 
         <div
-          className="flex items-center space-x-2  text-black px-6 py-3 rounded-md cursor-pointer"
+          className="flex items-center space-x-2  text-black  py-3 rounded-md cursor-pointer"
           onClick={toggleSidebar}
         >
           {user && 
             
-            <span className="text-[14px]">Halo, {user.email}</span>
+            <span className="hidden sm:block text-[14px]">Halo, {user.email}</span>
           
           }
           

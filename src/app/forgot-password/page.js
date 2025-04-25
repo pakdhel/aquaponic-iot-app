@@ -21,7 +21,7 @@ export default function ForgotPassword() {
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center">
-            <div className="w-[500px] rounded-xl bg-white p-8 shadow-custom-soft text-black">
+            <div className="w-[320px] sm:w-[500px] rounded-xl bg-white p-8 shadow-custom-soft text-black">
                 <div className="flex flex-col gap-2">
                     <div className="flex flex-col items-center gap-1.5">
                         <Icon icon="fa6-solid:lock" width="32" color="gray" />

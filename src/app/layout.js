@@ -1,7 +1,7 @@
   import { Geist, Geist_Mono } from "next/font/google";
   import { Inter } from "next/font/google";
   // import 'react-toastify/dist/ReactToastify.css';
-  import { ToastContainer } from 'react-toastify';
+  import { Slide, ToastContainer } from 'react-toastify';
   import "./globals.css";
   import { AuthProvider } from "@/context/AuthContext";
 
@@ -43,6 +43,7 @@
               draggable
               pauseOnHover
               theme="colored"
+              transition={Slide}
             />
           </AuthProvider>
         </body>
