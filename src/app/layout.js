@@ -3,6 +3,7 @@
   // import 'react-toastify/dist/ReactToastify.css';
   import { ToastContainer } from 'react-toastify';
   import "./globals.css";
+  import { AuthProvider } from "@/context/AuthContext";
 
   const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -30,18 +31,20 @@
         <body
           className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} antialiased`}
         >
-          {children}
-          <ToastContainer
-          position="top-right"
-          autoClose={2000}
-          hideProgressBar={true}
-          newestOnTop={false}
-          closeOnClick
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
+          <AuthProvider>
+            {children}
+            <ToastContainer
+              position="top-right"
+              autoClose={2000}
+              hideProgressBar={true}
+              newestOnTop={false}
+              closeOnClick
+              pauseOnFocusLoss
+              draggable
+              pauseOnHover
+              theme="colored"
+            />
+          </AuthProvider>
         </body>
       </html>
     );

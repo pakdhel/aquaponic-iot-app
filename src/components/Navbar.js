@@ -5,18 +5,18 @@ import { signOut } from "firebase/auth";
 import { auth } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Navbar() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const {user, logout} = useAuth();
 
   const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
   const router = useRouter();
 
   const handleLogout = async() => {
-    await signOut(auth);
-    toast.success('Logout berhasil')
-    router.push('/')
+    await logout();
   }
 
   return (
@@ -31,9 +31,13 @@ export default function Navbar() {
           className="flex items-center space-x-2  text-black px-6 py-3 rounded-md cursor-pointer"
           onClick={toggleSidebar}
         >
-          {/* <span className="text-[20px]">User</span> */}
+          {user && 
+            
+            <span className="text-[14px]">Halo, {user.email}</span>
           
-          <Icon icon="carbon:user-avatar-filled" width="32" height="32" />
+          }
+          
+          <Icon color="gray" icon="carbon:user-avatar-filled" width="32" height="32" />
         </div>
       </nav>
 

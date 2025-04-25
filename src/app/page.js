@@ -1,31 +1,18 @@
 'use client'
 
 import { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../lib/firebase";
 import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
-import { getFirebaseAuthErrorMessage } from "@/lib/firebaseErrors";
+import { useAuth } from "@/context/AuthContext";
 
 export default function Login() {
+  const {login} = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const router = useRouter();
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    
-    try {
-      await signInWithEmailAndPassword(auth, email, password);
-      toast.success("Login berhasil");
-      router.push('/dashboard');
-      
-    } catch (err) {
-      
-      const message = getFirebaseAuthErrorMessage(err.code);
-      toast.error(message);
-    } 
+    await login(email, password);
   }
 
   return (
@@ -58,7 +45,7 @@ export default function Login() {
               className="w-full rounded-md border p-3 text-black outline-none focus:border-purple-300"
             />
             <div className="flex justify-end text-xs text-gray-400 mt-2 mb-3">
-              <a href="#" className="hover:underline hover:text-purple-300">Forgot Password ?</a>
+              <a href="/forgot-password" className="hover:underline hover:text-purple-300">Forgot Password ?</a>
             </div>
           </div>
 
