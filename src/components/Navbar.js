@@ -31,7 +31,7 @@ export default function Navbar() {
           className="flex items-center space-x-2  text-black px-6 py-3 rounded-md cursor-pointer"
           onClick={toggleSidebar}
         >
-          <span className="text-[20px]">User</span>
+          {/* <span className="text-[20px]">User</span> */}
           
           <Icon icon="carbon:user-avatar-filled" width="32" height="32" />
         </div>
